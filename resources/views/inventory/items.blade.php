@@ -25,41 +25,45 @@
                 <button class="btn btn-primary" type="button">
                   <span class="glyphicon glyphicon-search"></span> <span class="hidden-xs hidden-sm">Search</span>
                 </button>
+                <button type="button" class="btn btn-primary" onclick="window.location='/inventory';">
+                  <span class="glyphicon glyphicon-plus-sign"></span> <span class="hidden-xs hidden-sm">New Item</span>
+                </button>
               </span>
             </div>
           </div>
-          <div class="panel-footer">
-            <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-              <button type="button" class="btn btn-primary" onclick="window.location='/inventory';">
-                <span class="glyphicon glyphicon-plus-sign"></span> &nbsp; <span class="hidden-xs hidden-sm">Add Item</span>
-              </button>
-
-              <div class="btn-group" role="group">
-                <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-tag"></span> &nbsp; <span class="hidden-xs hidden-sm">Search By <span class="caret"></span></span> 
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Name</a></li>
-                  <li><a href="#">Item Code</a></li>
-                  <li><a href="#">Category</a></li>
-                  <li><a href="#">Supplier</a></li>
-                  <li><a href="#">Description</a></li>
-                </ul>
+          <div class="panel-footer" style="padding-left: 50px; padding-right: 50px; ">
+            <form class="form-horizontal">
+              <div class="form-group">           
+                <div class="input-group">
+                  <span class="input-group-addon" id="sizing-addon2">Search By</span>
+                  <select class="form-control" aria-describedby="sizing-addon2">
+                    <option>ID Number</option>
+                    <option>Product Name</option>
+                    <option>Product Code</option>
+                    <option>Product Category</option>
+                    <option>Product Supplier</option>
+                    <option>Product Description</option>
+                  </select>
+                </div>
               </div>
-
-              <div class="btn-group" role="group">
-                <button id="btnGroupDrop1" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-list"></span> &nbsp; <span class="hidden-xs hidden-sm">Sort By <span class="caret"></span></span> 
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Name</a></li>
-                  <li><a href="#">Item Code</a></li>
-                  <li><a href="#">Category</a></li>
-                  <li><a href="#">Supplier</a></li>
-                  <li><a href="#">Date Added</a></li>
-                  <li><a href="#">Quantity</a></li>
-                  <li><a href="#">Price</a></li>
-                </ul>
+              <div class="form-group">
+                <div class="input-group">
+                  <span class="input-group-addon" id="sizing-addon2">Sorted By</span>
+                  <select class="form-control" aria-describedby="sizing-addon2">
+                    <option>ID Number</option>
+                    <option>Product Name</option>
+                    <option>Product Code</option>
+                    <option>Product Category</option>
+                    <option>Product Supplier</option>
+                    <option>Date Added</option>
+                    <option>Last Update</option>
+                    <option>Quantity</option>
+                    <option>Price</option>
+                    <option>User Added</option>
+                  </select>
               </div>
-            </div>
+              </div>
+          </form>
           </div>
         </div>
       </div>
@@ -70,9 +74,6 @@
         <thead>
           <tr>
             <th>Product Name</th>
-            <th>Item Code</th>
-            <th>Category</th>
-            <th>Supplier</th>
             <th>Quantity</th>
             <th>Price</th>
             <th>Actions</th>
@@ -82,18 +83,16 @@
         @forelse($items as $item)
         <tr>
           <td>{{$item->name}}</td>
-          <td>{{$item->item_code}}</td>
-          <td>{{$item->item_category->name}}</td>
-          <td>{{$item->item_supplier->name}}</td>
           <td>{{$item->quantity}}</td>
           <td>{{$item->price}}</td>
-          <td style="width: 230px;">
-            <button class="btn btn-warning" style="width: 100px;">Update</button>
-            <button class="btn btn-danger" style="width: 100px;">Deactivate</button>
+          <td style="width: 340px;">
+            <button class="btn btn-primary" name="view" style="width: 100px;" data-toggle="modal" data-target="#{{$item->id}}">View</button>
+            <button class="btn btn-warning" style="width: 100px;">Edit</button>
+            <button class="btn btn-danger" style="width: 100px;">Remove</button>
           </td>
-        </tr
->        @empty
-          <p>No Item Available</p>
+        </tr>        
+        @empty
+          <tr rowspan="4"><p>No Item Available</p></tr>
         @endforelse
         </tbody>
         </table>
@@ -104,6 +103,7 @@
           {{ $items->links()}}
       </div>
     </div>
+    @include('inventory.view')
   </div>
 </div>
 @endsection
