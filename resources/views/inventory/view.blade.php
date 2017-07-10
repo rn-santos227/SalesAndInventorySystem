@@ -14,7 +14,7 @@
             </div>
             <div class="form-group" id="item_code">
                 <label class="control-label col-sm-4">Product Code:</label>
-                <div class="col-sm-7">
+                A<div class="col-sm-7">
                     <input style="background-color:#ffffff;" type="text" class="form-control" id="item_code" name="item_code" value="{{$item->item_code}}" readonly>
                 </div>
             </div>
@@ -44,7 +44,7 @@
             </div>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-danger add" data-dismiss="modal"><span class="glyphicon glyphicon-remove-circle"></span> Dismiss</button>
+            <button type="button" class="btn btn-danger add" data-dismiss="modal"><i class="fa fa-times-circle" aria-hidden="true"></i> Dismiss</button>
         </div>
         </form>
     </div>
