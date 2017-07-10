@@ -23,10 +23,10 @@
               <input type="text" class="form-control" placeholder="Search for...">
               <span class="input-group-btn">
                 <button class="btn btn-primary" type="button">
-                  <span class="glyphicon glyphicon-search"></span> <span class="hidden-xs hidden-sm">Search</span>
+                  <i class="fa fa-search" aria-hidden="true"></i> <span class="hidden-xs hidden-sm">Search</span>
                 </button>
                 <button type="button" class="btn btn-primary" onclick="window.location='/inventory';">
-                  <span class="glyphicon glyphicon-plus-sign"></span> <span class="hidden-xs hidden-sm">New Item</span>
+                  <i class="fa fa-plus-circle" aria-hidden="true"></i> <span class="hidden-xs hidden-sm">New Item</span>
                 </button>
               </span>
             </div>
@@ -35,7 +35,7 @@
             <form class="form-horizontal">
               <div class="form-group">           
                 <div class="input-group">
-                  <span class="input-group-addon" id="sizing-addon2">Search By</span>
+                  <span class="input-group-addon" id="sizing-addon2"><i class="fa fa-search" aria-hidden="true"></i> Search By</span>
                   <select class="form-control" aria-describedby="sizing-addon2">
                     <option>ID Number</option>
                     <option>Product Name</option>
@@ -48,7 +48,8 @@
               </div>
               <div class="form-group">
                 <div class="input-group">
-                  <span class="input-group-addon" id="sizing-addon2">Sorted By</span>
+                  <span class="input-group-addon" id="sizing-addon2"><i class="fa fa-list-ul" aria-hidden="true"></i> 
+Sort By</span>
                   <select class="form-control" aria-describedby="sizing-addon2">
                     <option>ID Number</option>
                     <option>Product Name</option>
@@ -87,7 +88,7 @@
           <td>{{$item->price}}</td>
           <td style="width: 340px;">
             <button class="btn btn-primary" name="view" style="width: 100px;" data-toggle="modal" data-target="#{{$item->id}}">View</button>
-            <button class="btn btn-warning" style="width: 100px;">Edit</button>
+            <button class="btn btn-warning" name="view" style="width: 100px;" data-toggle="modal" data-target="#edit{{$item->id}}">Edit</button>
             <button class="btn btn-danger" style="width: 100px;">Remove</button>
           </td>
         </tr>        
@@ -104,6 +105,7 @@
       </div>
     </div>
     @include('inventory.view')
+    @include('inventory.edit')
   </div>
 </div>
 @endsection
